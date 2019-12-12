@@ -13,6 +13,7 @@ $sql = "SELECT * FROM konyv";
 $statement = $pdo->prepare($sql);  // https://www.php.net/manual/en/class.pdostatement.php
 $statement->execute();
 
+$fejlec=["Cím", "Szerző", "Kategória", "Kiadó", "Oldalak száma"];
 
 ?>
 
@@ -23,26 +24,39 @@ $statement->execute();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Könyveim</title>
+    <style>
+        table, th, td{
+            border: 1px solid green;
+        }
+        #mybooks td, th{
+            padding: 6px;
+        }
+
+        #mybooks th{
+            background-color: darkgreen;
+            color: white;
+        }
+        #mybooks tr:nth-child(even){
+            background-color: #b3e6b3;
+            color: darkgreen;
+        }
+        #mybooks tr:nth-child(odd){
+            background-color: #eff5ef;
+            color: darkgreen;
+        }
+        #mybooks{
+            margin: auto;
+        }
+    </style>
 </head>
 <body>
 <h1>Könyveim</h1>
-<table id="nybooks">
+<table id="mybooks">
     <tr>
-        <th>
-            Cim
-        </th>
-        <th>
-            Szerző
-        </th>
-        <th>
-            Kategória
-        </th>
-        <th>
-            Kiadó
-        </th>
-        <th>
-            Oldalainak száma
-        </th>
+    <?php foreach ($fejlec as $fejlecelem)
+    {
+        echo "<th>".$fejlecelem."</th>";
+    }?>
 
     </tr>
     <?php /** @var $konyv Konyv */?>
